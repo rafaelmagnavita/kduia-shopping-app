@@ -7,9 +7,8 @@ const Location = () => {
 
   const handleInputChange = (event) => {
     const inputValue = parseInt(event.target.value);
-    if (!isNaN(inputValue) && inputValue % 10 === 0) {
       setBudget(inputValue);
-    }
+    
   };
 
   return (
@@ -20,8 +19,9 @@ const Location = () => {
         type='number'
         id='remaining'
         value={budget}
-        style={{ width: '50px' }}
+        style={{ width: '150px' }}
         onChange={handleInputChange}
+        step={10}
       />
     </div>
   );

@@ -47,6 +47,38 @@ export const AppReducer = (state, action) => {
             return {
                 ...state,
             };
+            case 'INCREASE_TEN':
+                state.expenses.map((expense)=>{
+                    if(expense.name === action.payload.name) {
+                        expense.quantity += 10;
+                    }
+                    new_expenses.push(expense);
+                    return true;
+                })
+                state.expenses = new_expenses;
+                action.type = "DONE";
+                return {
+                    ...state,
+                };
+                case 'DECREASE_TEN':
+                    state.expenses.map((expense)=>{
+                        if(expense.name === action.payload.name) {
+                            if(expense.quantity >= 10){
+                                expense.quantity -= 10;
+                            }
+                            else
+                            {
+                                expense.quantity = 0;
+                            }
+                        }
+                        new_expenses.push(expense);
+                        return true;
+                    })
+                    state.expenses = new_expenses;
+                    action.type = "DONE";
+                    return {
+                        ...state,
+                    };            
     case 'CHG_LOCATION':
             action.type = "DONE";
             state.Location = action.payload;
@@ -62,11 +94,11 @@ export const AppReducer = (state, action) => {
 // 1. Sets the initial state when the app loads
 const initialState = {
     expenses: [
-        { id: "Marketing", name: 'Marketing', quantity: 0, unitprice: 500 },
-        { id: "Finance", name: 'Finance', quantity: 0, unitprice: 300 },
-        { id: "Sales", name: 'Sales', quantity: 0, unitprice: 400 },
-        { id: "Human Resource", name: 'Human Resource', quantity: 0, unitprice: 600 },
-        { id: "IT", name: 'IT', quantity: 0, unitprice: 200 },
+        { id: "Marketing", name: 'Marketing', quantity: 0, unitprice: 1 },
+        { id: "Finance", name: 'Finance', quantity: 0, unitprice: 1 },
+        { id: "Sales", name: 'Sales', quantity: 0, unitprice: 1 },
+        { id: "Human Resource", name: 'Human Resource', quantity: 0, unitprice: 1 },
+        { id: "IT", name: 'IT', quantity: 0, unitprice: 1 },
     ],
     Location: '£'
 };
