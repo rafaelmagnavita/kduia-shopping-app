@@ -18,8 +18,8 @@ export const AppReducer = (state, action) => {
                     }
                     else
                     {
-                        alert("Expenses value should not exceed budget: £" + state.Budget);
-
+                        const stateRem = state.Budget - total;
+                        alert("Expenses value should not exceed remaining: £" + stateRem);
                     }
                     updatedqty = true;
                 }
@@ -70,7 +70,8 @@ export const AppReducer = (state, action) => {
                         }
                         else
                         {
-                            alert("Expenses value should not exceed budget: £" + state.Budget);
+                            const stateRem = state.Budget - total;
+                            alert("Expenses value should not exceed remaining: £" + stateRem);
                         }
                     }
                     new_expenses.push(expense);
