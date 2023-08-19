@@ -7,9 +7,16 @@ const Location = () => {
 
   const handleInputChange = (event) => {
     const inputValue = parseInt(event.target.value);
-      setBudget(inputValue);
-    
+    setBudget(inputValue);
+    changeBudget(inputValue);
   };
+
+  const changeBudget = (val)=>{
+    dispatch({
+        type: 'CHG_BUDGET',
+        payload: val,
+    })
+    };
 
   return (
     <div className='alert alert-secondary'>
@@ -22,6 +29,7 @@ const Location = () => {
         style={{ width: '150px' }}
         onChange={handleInputChange}
         step={10}
+        min={0}
       />
     </div>
   );

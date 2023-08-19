@@ -6,9 +6,21 @@ export const AppReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_QUANTITY':
             let updatedqty = false;
+
             state.expenses.map((expense)=>{
+                const total = state.expenses.reduce((total, item) => {
+                    return (total = total + (item.unitprice*item.quantity));
+                }, 0);
                 if(expense.name === action.payload.name) {
+                    if(state.Budget - (total + (expense.unitprice*action.payload.quantity)) >= 0){
+
                     expense.quantity = expense.quantity + action.payload.quantity;
+                    }
+                    else
+                    {
+                        alert("Expenses value should not exceed budget: £" + state.Budget);
+
+                    }
                     updatedqty = true;
                 }
                 new_expenses.push(expense);
@@ -48,9 +60,18 @@ export const AppReducer = (state, action) => {
                 ...state,
             };
             case 'INCREASE_TEN':
+                const total = state.expenses.reduce((total, item) => {
+                    return (total = total + (item.unitprice*item.quantity));
+                }, 0);
                 state.expenses.map((expense)=>{
                     if(expense.name === action.payload.name) {
+                        if(state.Budget - (total + (expense.unitprice*10)) >= 0){
                         expense.quantity += 10;
+                        }
+                        else
+                        {
+                            alert("Expenses value should not exceed budget: £" + state.Budget);
+                        }
                     }
                     new_expenses.push(expense);
                     return true;
@@ -85,6 +106,12 @@ export const AppReducer = (state, action) => {
             return {
                 ...state
             }
+            case 'CHG_BUDGET':
+                action.type = "DONE";
+                state.Budget = action.payload;
+                return {
+                    ...state
+                }
 
         default:
             return state;
@@ -100,7 +127,8 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', quantity: 0, unitprice: 1 },
         { id: "IT", name: 'IT', quantity: 0, unitprice: 1 },
     ],
-    Location: '£'
+    Location: '£',
+    Budget: 0
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
@@ -123,7 +151,8 @@ state.CartValue = totalExpenses;
                 expenses: state.expenses,
                 CartValue: state.CartValue,
                 dispatch,
-                Location: state.Location
+                Location: state.Location,
+                Budget: state.Budget
             }}
         >
             {props.children}
