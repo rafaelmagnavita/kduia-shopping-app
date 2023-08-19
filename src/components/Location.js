@@ -2,36 +2,38 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Location = () => {
-  const { dispatch } = useContext(AppContext);
-  const [budget, setBudget] = useState(0);
+  const { dispatch, Location } = useContext(AppContext);
+  const [selectedCurrency, setSelectedCurrency] = useState(Location);
 
-  const handleInputChange = (event) => {
-    const inputValue = parseInt(event.target.value);
-    setBudget(inputValue);
-    changeBudget(inputValue);
+  const changeLocation = (val) => {
+    dispatch({
+      type: 'CHG_LOCATION',
+      payload: val,
+    });
+    setSelectedCurrency(val);
   };
 
-  const changeBudget = (val)=>{
-    dispatch({
-        type: 'CHG_BUDGET',
-        payload: val,
-    })
-    };
-
   return (
-    <div className='alert alert-secondary'>
-      Budget: £
-      <input
-        required='required'
-        type='number'
-        id='remaining'
-        value={budget}
-        style={{ width: '150px' }}
-        onChange={handleInputChange}
-        step={10}
-        min={0}
-      />
-    </div>
+      
+      <select
+        name='Location'
+        id='Location'
+        onChange={(event) => changeLocation(event.target.value)}
+        value={"Currency (" + selectedCurrency + ")"}
+        style={{
+          backgroundColor: 'green',
+          color: 'white'
+        }}
+      >
+        <option hidden="hidden" value='$'>Currency: ({selectedCurrency})</option>
+        <option value='$'>Dollar($)</option>
+        <option value='£'>Pound(£)</option>
+        <option value='€'>Euro(€)</option>
+        <option value='₹'>Rupee(₹)</option>
+        
+      </select>
+      
+      
   );
 };
 

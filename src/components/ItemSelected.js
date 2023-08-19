@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const ItemSelected = (props) => {
-    const { dispatch} = useContext(AppContext);
+    const { dispatch, Location} = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -54,13 +54,13 @@ const ItemSelected = (props) => {
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>  
                   <span className="eco" style={{ marginLeft: '2rem', marginRight: '8px'}}></span>
-
+                    <label>{Location}</label>
                     <input
                         required='required'
                         type='number'
                         id='cost'
                         value={quantity}
-                        style={{size: 10}}
+                        style={{size: 10},{ marginLeft: '1rem' }}
                         onChange={(event) => setQuantity(event.target.value)}>
                     </input>
 

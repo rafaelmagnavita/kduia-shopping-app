@@ -7,6 +7,7 @@ import Remaining from './components/Remaining';
 import CartValue from './components/CartValue';
 import ExpenseList from './components/ExpenseList';
 import ItemSelected from './components/ItemSelected';
+import BudgetVal from './components/BudgetVal';
 import Location from './components/Location';
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
                 <h1 className='mt-3'>Company's Budget Allocation</h1>
                 <div className='row mt-3'> 
                     <div className='col-sm'>
-                        <Location />
+                        <BudgetVal />
                     </div>
                     <div className='col-sm'>
                         <Remaining />
@@ -24,7 +25,9 @@ const App = () => {
                     <div className='col-sm'>
                         <CartValue />
                     </div>
-
+                    <div className='col-sm'>
+                        <Location />
+                    </div>
                 </div>
                 <h3 className='mt-3'>Allocation</h3>
                 <div className='row '>
