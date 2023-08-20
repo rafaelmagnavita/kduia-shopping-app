@@ -37,25 +37,35 @@ const Location = () => {
   };
 
   return (
-      
+    <div className='alert alert-secondary'>
       <select
+        class="form-select form-select-sm"
         name='Location'
         id='Location'
         onChange={(event) => changeLocation(event.target.value)}
         value={"Currency (" + choseValName(selectedCurrency) + ")"}
         style={{
-          backgroundColor: 'green',
+          backgroundColor: 'lightgreen',
           color: 'white'
         }}
       >
         <option hidden="hidden" value='$'>Currency: ({choseValName(selectedCurrency)})</option>
-        <option value='$'>Dollar($)</option>
-        <option value='£'>Pound(£)</option>
-        <option value='€'>Euro(€)</option>
-        <option value='₹'>Rupee(₹)</option>
+        <option         style={{
+          color: 'black'
+        }} value ='$'>Dollar($)</option>
+        <option style={{
+          color: 'black'
+        }} value='£'>Pound(£)</option>
+        <option style={{
+          color: 'black'
+        }} value='€'>Euro(€)</option>
+        <option style={{
+          color: 'black'
+        }} value='₹'>Rupee(₹)</option>
         
       </select>
-      
+    </div>
+
       
   );
 };
