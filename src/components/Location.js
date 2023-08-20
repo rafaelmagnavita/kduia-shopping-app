@@ -13,19 +13,42 @@ const Location = () => {
     setSelectedCurrency(val);
   };
 
+  const choseValName = (val) => {
+    if(val === '$')
+    {
+        const valName = val + ' Dollar';
+        return valName;
+    }
+    if(val === '€')
+    {
+        const valName = val + ' Euro';
+        return valName;
+    }
+    if(val === '₹')
+    {
+        const valName = val + ' Rupee';
+        return valName;
+    }
+    if(val === '£')
+    {
+        const valName = val + ' Pound';
+        return valName;
+    }
+  };
+
   return (
       
       <select
         name='Location'
         id='Location'
         onChange={(event) => changeLocation(event.target.value)}
-        value={"Currency (" + selectedCurrency + ")"}
+        value={"Currency (" + choseValName(selectedCurrency) + ")"}
         style={{
           backgroundColor: 'green',
           color: 'white'
         }}
       >
-        <option hidden="hidden" value='$'>Currency: ({selectedCurrency})</option>
+        <option hidden="hidden" value='$'>Currency: ({choseValName(selectedCurrency)})</option>
         <option value='$'>Dollar($)</option>
         <option value='£'>Pound(£)</option>
         <option value='€'>Euro(€)</option>
